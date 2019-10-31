@@ -1,0 +1,15 @@
+UPLOADER
+ - Add a "Quick add" option to the current server uploaded whitelist
+ - Figure out a way to do sm_whitelist_reload automatically
+
+TEAMMAKER
+ - Create a SteamID object in which holds all information for a particular Steam ID
+ - 
+
+WHITELIST (main program)
+ - Add appendage feature
+ - Optional read file argument in command line
+
+FUTURE VENTURES
+ - Way to access Flaktest match information and automatically assign whitelist per-match on a time-basis (might 
+have to be run on the servers themselves) 
