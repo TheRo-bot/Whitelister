@@ -37,7 +37,7 @@ public class TeamMaker
 			{
 				case 0:
 					// exit
-					System.out.println("User exited, bye bye :(");
+					System.out.println("bye!");
 					exit = true;
 					break;
 
@@ -200,8 +200,6 @@ public class TeamMaker
 	SUBMODULE: removeTeam
 	PURPOSE:
 		To remove an existing team from the teams classfield
-	TO DO:
-		- Done
 	*/
 	public static void removeTeam()
 	{
@@ -263,7 +261,7 @@ public class TeamMaker
 		{
 			editTeam = UserInput.getString("What team would you like to edit?");
 
-			while(teamList.hasNext())
+			while(teamList.hasNext() && teamNotFound)
 			{
 				currentTeam = (Team)teamList.next();
 				// if we've found it
@@ -274,8 +272,8 @@ public class TeamMaker
 					while( !exit )
 					{
 						System.out.println();
-						userChoice = UserInput.inputMenu(options,"What would you like to edit?");
-						System.out.println(userChoice);
+						userChoice = UserInput.inputSelectMenu(options,"What would you like to edit?");
+						System.out.println(userChoice + "\n");
 						switch(userChoice)
 						{
 							case 0:
@@ -471,14 +469,14 @@ public class TeamMaker
 	*/
 	public static void viewTeams()
 	{
-		Iterator teamIter = teams.iterator();
+		
 		Team currTeam;
-		if( teamIter.hasNext())
+		if(! teams.isEmpty())
 		{
 			System.out.println("\nCurrent teams:\n");
-			while(teamIter.hasNext())
+			for( Object o : teams )
 			{
-				currTeam = (Team)teamIter.next();
+				currTeam = (Team)o;
 
 				System.out.println(currTeam.getName());
 				
@@ -491,6 +489,31 @@ public class TeamMaker
 		}
 	}
 
+
+	public static String getTeamDir()
+	{
+		String separator = System.getProperty("file.separator");
+		String dir = System.getProperty("user.dir") + separator + "Team_Files";	
+		return dir;
+	}
+
+
+
+	public static void showTeamFiles()
+	{
+		showTeamFiles(getTeamDir());
+	}
+
+	public static void showTeamFiles(String dir)
+	{
+		File teamFile = new File(dir);
+		System.out.println("Team Files:");
+		for( String s : teamFile.list() )
+		{
+			if( s.charAt(0) != '.' )
+			System.out.println( " - " + s);
+		}
+	}
 
 
 	/*
@@ -510,10 +533,12 @@ public class TeamMaker
 		InputStreamReader isr;
 		BufferedReader br;
 
-		
+		String dir = getTeamDir();
 
-		fileName = UserInput.getFileName("Please enter the file you'd like to import from","teams.txt");
-		if(! fileName.equals(null) )
+		showTeamFiles(dir);
+		System.out.println();
+		fileName = UserInput.getFileName("Please enter the file you'd like to import from",dir);
+		if(! fileName.equals("") )
 		{
 			try
 			{
@@ -532,7 +557,7 @@ public class TeamMaker
 					index++;
 				}
 
-				System.out.println("Imported " + index + " teams from '" + fileName + "'.");
+				System.out.println("Imported " + index + " teams from '" + fileName.substring(dir.length() + 1, fileName.length()) + "'.\n\n");
 
 
 			}
@@ -567,10 +592,13 @@ public class TeamMaker
 		InputStreamReader isr;
 		BufferedReader br;
 
-		// obtain the fileName from UserInput
-		fileName = UserInput.getFileName("Please enter a filename to output to:","teams.txt");
 
-		if(! fileName.equals(null) )
+		String separator = System.getProperty("file.separator");
+		String dir = System.getProperty("user.dir") + separator + "Team_Files";
+		// obtain the fileName from UserInput
+		fileName = UserInput.getFileNameOverwrite("Please enter a filename to output to:",dir);
+
+		if(! fileName.equals("") )
 		{
 			try
 			{

@@ -46,13 +46,9 @@ public class Player
     public String getSteamID()
     {   return steamID;   }
 
-    /*
-    ACCESSOR: isCaptain
-    EXPORTS: captain
-    */
-    public boolean isCaptain()
-    {   return captain;   }
 
+    public int getPlayerState()
+    {   return playerState;   }
 
 
     /*
@@ -64,14 +60,7 @@ public class Player
     public String toString()
     {
         String exportString;
-        if( isCaptain() )
-        {
-            exportString = getPlayerName() + " - " + getSteamID() + " - 1 ";
-        }
-        else
-        {
-            exportString = getPlayerName() + " - " + getSteamID();
-        }
+        exportString = getPlayerName() + " - " + getSteamID() + " - " + getPlayerState();
 
         return exportString;
     }

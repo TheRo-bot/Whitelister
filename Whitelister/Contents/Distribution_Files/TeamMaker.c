@@ -5,8 +5,6 @@
 #!/bin/bash \n\
 cd ~/../../Applications \n\
 cd Flaktest/Whitelister/Contents \n\
-pwd \n\
-ls \n\
 java TeamMaker \n\
 "
 

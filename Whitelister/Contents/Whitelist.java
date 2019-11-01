@@ -13,7 +13,12 @@ public class Whitelist
         // make a new Whitelister that reads teams.txt
 
         System.out.println("--Whitelisting program --");
-        Whitelister wlister = new Whitelister(UserInput.getFileName("Please select which team storing file to use:","teams.txt"));
+
+        TeamMaker.showTeamFiles();
+        System.out.println();
+        String fileName = UserInput.getFileName("Please select which Team-File to use:",TeamMaker.getTeamDir());
+        Whitelister wlister = new Whitelister(fileName);
+        System.out.println("'" + fileName.substring(TeamMaker.getTeamDir().length() + 1, fileName.length()) + "' loaded!");
         // this stores all the team names
         String[] teamNames;
         // used for confirming the user only enters one of each team
@@ -35,7 +40,7 @@ public class Whitelist
         }
         index = 0;
         // :ooo the first thing the user sees! so ominous~~
-        System.out.println("-- TEAM WHITELIST SELECTOR --");
+        System.out.println("\n-- TEAM WHITELIST SELECTOR --");
 
         do
         {

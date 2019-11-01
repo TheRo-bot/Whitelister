@@ -129,7 +129,7 @@ import java.util.*;
 
                 currString[0] = currPlayer.getPlayerName();
                 currString[1] = currPlayer.getSteamID();
-                currString[2] = String.valueOf(currPlayer.isCaptain());
+                currString[2] = String.valueOf(currPlayer.getPlayerState());
 
   
                 exportList.insertLast( currString );
@@ -258,7 +258,7 @@ import java.util.*;
 
 
         /*
-        ACCESSOR: toString
+        ACCESSOR: toFileString
         EXPORTS: exportString
         */
         public String toFileString()

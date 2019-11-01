@@ -1,4 +1,15 @@
-; ------- TEAM: 'Test Team'
-[0_1:1230918]; Test Captain - Player
-[0_1:12903812]; Test Player - Player
+; ------- TEAM: 'CRINGE :D'
+STEAM_1:0:187212865; JPCstinky - Player
+STEAM_1:1:161770040; smoothie - Player
+STEAM_1:0:101477622; xenix - Player
+STEAM_1:1:434155647; Shyke - Player
+STEAM_1:1:196734865; Cyxapro - Player
+STEAM_1:0:60784362; EuroCrew - Player
+
+; ------- TEAM: 'Greenwood.gg'
+STEAM_1:1:92406676; Squashua - Player
+STEAM_1:1:48277927; VICO - Player
+STEAM_1:0:194829187; Missing Link - Player
+STEAM_1:1:437788351; PXI - Player
+STEAM_1:0:189797310; Sally - Player
 

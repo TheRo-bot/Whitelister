@@ -162,20 +162,20 @@ public class UserInput
         return userChoice;
     }
 
-
-    public static String getFileName(String promptMessage, String defaultFile)
+public static String getFileNameOverwrite(String promptMessage, String directory)
     {
         String fileName = "\0";
         String userChoice = null;
+        String exportString = "";
         while( fileName.equals("\0") )
         {
 
-            fileName = UserInput.getString(promptMessage + "\n(leave blank for '" + defaultFile + "'')");
+            fileName = UserInput.getString(promptMessage + "\n(Press <ENTER> to cancel)");
             if( fileName.equals("") )
             {
-                fileName = defaultFile;
+                fileName = "";
             }
-            if(!( new File(fileName).isFile() ) )
+            if(!( new File(directory + System.getProperty("file.separator") + fileName).isFile() ) )
             {
                 userChoice = UserInput.getString("That file exists! Would you like to overwrite?\nPress <ENTER> to cancel");
 
@@ -190,9 +190,42 @@ public class UserInput
                 
             }
         }
-
-        return fileName;
+        if(! fileName.equals("") )
+        {
+            exportString = directory + System.getProperty("file.separator") + fileName;
+        }
+        return exportString;
     }
+
+
+    public static String getFileName(String promptMessage, String directory)
+    {
+        String fileName = "\0";
+        String userChoice = "";
+        String exportString = "";
+        while( fileName.equals("\0") )
+        {
+
+            fileName = UserInput.getString(promptMessage + "\n(Press <ENTER> to cancel)");
+            if( fileName.equals("") )
+            {
+                System.out.println("Cancelled!\n");
+                fileName = "";
+            }
+            else if(!( new File(directory + System.getProperty("file.separator") + fileName).isFile() ) )
+            {
+                System.out.println("ERROR: Please enter a valid file!\n\n");
+                fileName = "\0";
+            }
+        }
+        if(!fileName.equals(""))
+        {
+            exportString = directory + System.getProperty("file.separator") + fileName;
+        }
+        return exportString;
+    }
+
+
     public static int getNumber(String promptMessage)
     {
         return getNumber(promptMessage, -999999, 999999 );
