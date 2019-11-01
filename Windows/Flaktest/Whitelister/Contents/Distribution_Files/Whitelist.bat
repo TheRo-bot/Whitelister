@@ -1,6 +1,6 @@
 @ECHO OFF
 
-cd Contents
+cd ..
 java Whitelist
 
 PAUSE

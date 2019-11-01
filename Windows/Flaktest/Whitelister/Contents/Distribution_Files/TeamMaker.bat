@@ -1,5 +1,5 @@
 @ECHO OFF
-cd Contents
+cd ..
 java TeamMaker
 
 PAUSE
